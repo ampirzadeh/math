@@ -72,8 +72,8 @@ export const allPositiveDivisors = (num: number): number[] => {
  * @param num Input number
  * @param short Whether the input should be shortened
  * @returns The number being read
- * @example say(123, false) // One hundred thirty three
- * say(123, true) // 1 hundred 23
+ * @example say(1123, false) // one thousand one hundred twenty-three
+ * say(1123, true) // 1 thousand 123
  */
 export const say = (num: number, short: boolean): string => {
   const ones: string[] = [
