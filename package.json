@@ -2,7 +2,11 @@
   "name": "@ampirzadeh/math",
   "version": "1.0.0",
   "description": "Basic math operations written in Typescript",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ampirzadeh/math.git"
@@ -20,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/ampirzadeh/math/issues"
   },
-  "homepage": "https://github.com/ampirzadeh/math#readme"
+  "homepage": "https://github.com/ampirzadeh/math#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
 }
