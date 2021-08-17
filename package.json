@@ -1,6 +1,6 @@
 {
   "name": "@ampirzadeh/math",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Basic math operations written in Typescript",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
