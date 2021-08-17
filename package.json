@@ -1,0 +1,24 @@
+{
+  "name": "@ampirzadeh/math",
+  "version": "1.0.0",
+  "description": "Basic math operations written in Typescript",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ampirzadeh/math.git"
+  },
+  "keywords": [
+    "math",
+    "numbers",
+    "ampirzadeh"
+  ],
+  "author": {
+    "email": "am.pirzadeh@gmail.com",
+    "name": "AmirMohammad Pirzadeh"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ampirzadeh/math/issues"
+  },
+  "homepage": "https://github.com/ampirzadeh/math#readme"
+}
