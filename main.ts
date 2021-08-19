@@ -5,10 +5,10 @@
  * @example 98: `9+8` = 17
  */
 export const sumOfDigits = (num: number | string): number =>
-  num
+  +num
     .toString()
     .split("")
-    .map((digit: number | string) => parseInt(digit as string))
+    .map((digit: number | string) => +digit.toString())
     .reduce((a: number, b: number) => a + b, 0);
 /**
  * Recursively calculates GCD of two numbers
@@ -16,24 +16,21 @@ export const sumOfDigits = (num: number | string): number =>
  * @param num2 Second number
  * @returns GCD
  */
-export const gcd = (num1: number, num2: number): number =>
-  num1 === 0 ? num2 : gcd(num2 % num1, num1);
+export const gcd = (num1: number, num2: number): number => {
+  if (num1 === 0 || num2 === 0) return 0;
+  if (num1 === num2) return num1;
+  if (num1 > num2) return gcd(num1 - num2, num2);
+  return gcd(num1, num2 - num1);
+};
 
 /**
- * Find all coprimes of the input number
- * @param num Input
- * @returns CoPrime
+ * Check if the two inputs are co-prime
+ * @param num Input number
+ * @param num2 Input number 2
+ * @returns Whether they are co prime or not
  */
-export const coprime = (num: number): number[] => {
-  const coprimes: number[] = [];
-
-  for (let i = 1; i < num; i++) {
-    // If gcd is 1 add i to coprimes
-    gcd(i, num) === 1 && coprimes.push(i);
-  }
-
-  return coprimes;
-};
+export const areCoPrime = (num: number, num2: number): boolean =>
+  gcd(num, num2) === 1;
 
 /**
  * Calculates the prime factors of the input
@@ -41,13 +38,18 @@ export const coprime = (num: number): number[] => {
  * @param unique Whether the result should be filtered to only contain the unique prime factors
  * @returns Prime factors
  */
-export const primeFactors = (num: number, unique?: boolean): number[] => {
+export const primeFactors = (num: number, unique: boolean = true): number[] => {
   const primeFactors: number[] = [];
-  for (let i = 2; i <= num; i++) {
+  for (let i = 2; i <= Math.sqrt(num); i++) {
     while (num % i === 0) {
       primeFactors.push(i);
       num /= i;
     }
+  }
+  // The ultimate reminder should be a last prime factor,
+  // unless it is not 1 (since 1 is not a prime number).
+  if (num !== 1) {
+    primeFactors.push(num);
   }
   return unique ? [...new Set(primeFactors)] : primeFactors;
 };
@@ -75,7 +77,7 @@ export const allPositiveDivisors = (num: number): number[] => {
  * @example say(1123, false) // one thousand one hundred twenty-three
  * say(1123, true) // 1 thousand 123
  */
-export const say = (num: number, short: boolean): string => {
+export const say = (num: number, short: boolean = true): string => {
   const ones: string[] = [
     "",
     "one",
@@ -225,7 +227,7 @@ export const engineeringNotation = (
 /**
  * Count the occurrences of each number is an array
  * @param nums Input number
- * @returns An object with numbers as keys and number of occurrences as values
+ * @returns An object with numbers as keys and index of those numbers as values
  */
 export const countOccurrences = (
   nums: number[]
@@ -255,30 +257,6 @@ export const countOccurrences = (
  */
 export const liouvilleLambda = (num: number): number =>
   primeFactors(num, false).length % 2 === 0 ? 1 : -1;
-
-/**
- * Radic of the number
- * @param num Input number
- * @returns All prime factors of the number multiplied
- */
-export const radical = (num: number): number =>
-  primeFactors(num, true).reduce(
-    (totalValue, currentValue) => totalValue * currentValue
-  );
-
-/**
- * @param num Number
- * @param aliquot Whether is should be aliquot or not
- * @returns Sum of all of the divisors of the number
- */
-export const sumOfDivisors = (num: number, aliquot: boolean): number =>
-  allPositiveDivisors(num).reduce((totalValue, currentValue) =>
-    !aliquot
-      ? totalValue + currentValue
-      : currentValue !== num
-      ? totalValue + currentValue
-      : 0
-  );
 
 /**
  * @param num Input number
